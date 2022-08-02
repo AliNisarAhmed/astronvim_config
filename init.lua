@@ -18,7 +18,7 @@ local config = {
   },
 
   -- Set colorscheme
-  colorscheme = "default_theme",
+  colorscheme = "catppuccin",
 
   -- Override highlight groups in any theme
   highlights = {
@@ -52,21 +52,21 @@ local config = {
     },
     plugins = { -- enable or disable extra plugin highlighting
       aerial = true,
-      beacon = false,
+      beacon = true,
       bufferline = true,
       dashboard = true,
       highlighturl = true,
-      hop = false,
+      hop = true,
       indent_blankline = true,
-      lightspeed = false,
+      lightspeed = true,
       ["neo-tree"] = true,
       notify = true,
-      ["nvim-tree"] = false,
+      ["nvim-tree"] = true,
       ["nvim-web-devicons"] = true,
       rainbow = true,
-      symbols_outline = false,
+      symbols_outline = true,
       telescope = true,
-      vimwiki = false,
+      vimwiki = true,
       ["which-key"] = true,
     },
   },
@@ -93,6 +93,13 @@ local config = {
       --     require("lsp_signature").setup()
       --   end,
       -- },
+      {
+        "catppuccin/nvim",
+        as = "catppuccin",
+        config = function() 
+          require("catppuccin").setup {}
+        end,
+      }
     },
     -- All other entries override the setup() call for default plugins
     ["null-ls"] = function(config)
@@ -102,6 +109,7 @@ local config = {
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
       config.sources = {
         -- Set a formatter
+        null_ls.builtins.formatting.prettierd,
         null_ls.builtins.formatting.rufo,
         -- Set a linter
         null_ls.builtins.diagnostics.rubocop,
