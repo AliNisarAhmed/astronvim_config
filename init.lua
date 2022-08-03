@@ -18,7 +18,8 @@ local config = {
   },
 
   -- Set colorscheme
-  colorscheme = "catppuccin",
+  colorscheme = "nightfox",
+  encoding = 'utf-8',
 
   -- Override highlight groups in any theme
   highlights = {
@@ -40,41 +41,14 @@ local config = {
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
-    },
-  },
-
-  -- Default theme configuration
-  default_theme = {
-    diagnostics_style = { italic = true },
-    -- Modify the color table
-    colors = {
-      fg = "#abb2bf",
-    },
-    plugins = { -- enable or disable extra plugin highlighting
-      aerial = true,
-      beacon = true,
-      bufferline = true,
-      dashboard = true,
-      highlighturl = true,
-      hop = true,
-      indent_blankline = true,
-      lightspeed = true,
-      ["neo-tree"] = true,
-      notify = true,
-      ["nvim-tree"] = true,
-      ["nvim-web-devicons"] = true,
-      rainbow = true,
-      symbols_outline = true,
-      telescope = true,
-      vimwiki = true,
-      ["which-key"] = true,
+      airline_powerline_fonts = 1
     },
   },
 
   -- Disable AstroNvim ui features
   ui = {
-    nui_input = true,
-    telescope_select = true,
+    nui_input = false,
+    telescope_select = false,
   },
 
   -- Configure plugins
@@ -93,12 +67,16 @@ local config = {
       --     require("lsp_signature").setup()
       --   end,
       -- },
-      {
-        "catppuccin/nvim",
-        as = "catppuccin",
-        config = function() 
-          require("catppuccin").setup {}
-        end,
+      { 'EdenEast/nightfox.nvim',
+        config = function ()
+          require('nightfox').setup {
+              options = {
+                  styles = {
+                    comments = "italic"
+                  }
+              },
+          }
+        end
       }
     },
     -- All other entries override the setup() call for default plugins
@@ -132,6 +110,12 @@ local config = {
     },
     ["nvim-lsp-installer"] = {
       ensure_installed = { "sumneko_lua" },
+    },
+    ["neo-tree"] = {
+      window = {
+        position = "right",
+        width = "45"
+      }
     },
     packer = {
       compile_path = vim.fn.stdpath "data" .. "/packer_compiled.lua",
