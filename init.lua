@@ -90,7 +90,7 @@ local config = {
       local null_ls = require "null-ls"
       config.sources = {
         -- Set a formatter
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettierd,
         null_ls.builtins.formatting.mix,
         null_ls.builtins.diagnostics.eslint_d
       }
