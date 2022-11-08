@@ -68,17 +68,18 @@ local config = {
       --   end,
       -- },
       { 'EdenEast/nightfox.nvim',
-        config = function ()
+        config = function()
           require('nightfox').setup {
-              options = {
-                  styles = {
-                    comments = "italic"
-                  }
-              },
+            options = {
+              styles = {
+                comments = "italic"
+              }
+            },
           }
         end
       },
-      { "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, },
+      { "iamcco/markdown-preview.nvim", run = "cd app && npm install",
+        setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, },
       { "mhanberg/elixir.nvim" }
     },
     -- All other entries override the setup() call for default plugins
@@ -86,8 +87,12 @@ local config = {
       -- Check supported formatters and linters
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/formatting
       -- https://github.com/jose-elias-alvarez/null-ls.nvim/tree/main/lua/null-ls/builtins/diagnostics
+      local null_ls = require "null-ls"
       config.sources = {
         -- Set a formatter
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.mix,
+        null_ls.builtins.diagnostics.eslint_d
       }
       -- set up null-ls's on_attach function
       -- config.on_attach = function(client)
@@ -103,7 +108,7 @@ local config = {
       return config -- return final config table
     end,
     treesitter = {
-      ensure_installed = { "lua" },
+      ensure_installed = { "lua", "elixir", "heex", "eex" },
     },
     ["nvim-lsp-installer"] = {
       ensure_installed = { "sumneko_lua" },
@@ -208,7 +213,7 @@ local config = {
     n = {
       -- second key is the lefthand side of the map
       ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
-      ["<leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume Last Search"}
+      ["<leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume Last Search" }
     },
     t = {
       -- setting a mapping to false will disable it
