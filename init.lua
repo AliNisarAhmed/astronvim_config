@@ -92,7 +92,8 @@ local config = {
         -- Set a formatter
         null_ls.builtins.formatting.prettierd,
         null_ls.builtins.formatting.mix,
-        null_ls.builtins.diagnostics.eslint_d
+        null_ls.builtins.diagnostics.eslint_d,
+        null_ls.builtins.code_actions.eslint_d
       }
       -- set up null-ls's on_attach function
       -- config.on_attach = function(client)
