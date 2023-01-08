@@ -1,8 +1,7 @@
 local config = {
 
   -- Configure AstroNvim updates
-  updater = {
-    remote = "origin", -- remote to use
+  updater = { remote = "origin", -- remote to use
     channel = "nightly", -- "stable" or "nightly"
     version = "latest", -- "latest", tag name, or regex search like "v1.*" to only do updates before v2 (STABLE ONLY)
     branch = "main", -- branch name (NIGHTLY ONLY)
@@ -38,6 +37,7 @@ local config = {
   options = {
     opt = {
       relativenumber = true, -- sets vim.opt.relativenumber
+      scrolloff = 8
     },
     g = {
       mapleader = " ", -- sets vim.g.mapleader
@@ -214,11 +214,26 @@ local config = {
     n = {
       -- second key is the lefthand side of the map
       ["<C-s>"] = { ":w!<cr>", desc = "Save File" },
-      ["<leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume Last Search" }
+      ["<leader>fr"] = { "<cmd>Telescope resume<cr>", desc = "Resume Last Search" },
+      ["<A-j>"] = { ":set paste<CR>m`o<Esc>``:set nopaste<CR>"},
+      ["<A-k>"] = { ":set paste<CR>m`O<Esc>``:set nopaste<CR>"},
+      ["<A-S-j>"] = { ":m .+1<CR>=="},
+      ["<A-S-k>"] = { ":m .-2<CR>=="},
+      ["<C-J>"] = {"o<Esc>k"},
+      ["<C-K>"] = {"O<Esc>j"},
+      ["<leader><leader>"] = { "c-^" },
+      ["<left>"] = { ":bp<cr>" },
+      ["<right>"] = { ":bn<cr>" },
     },
     t = {
       -- setting a mapping to false will disable it
       -- ["<esc>"] = false,
+    },
+    v = {
+      ["<A-k>"] = { "xkP`[V`]"},
+      ["<A-j>"] = { "xp`[V`]"},
+      ["<A-h>"] = {"<gv"},
+      ["<A-l>"] = {">gv"}
     },
   },
 
